@@ -7,7 +7,7 @@ all_Pot_N = cell(n, 1);
 
 
 for i = 1:n
-    name = all_names{i};
+    name = [folder, all_names{i}];
     Pot_N = hdfread(name, 'Potential North [V]');
     
     if i==1
@@ -27,3 +27,5 @@ for i = 1:n
     
     all_Pot_N{i} = double(Pot_N(1:end-1, :));
 end
+
+save('WHI_quad.mat', 'theta', 'phi', 'all_Pot_N', '-v7.3')
