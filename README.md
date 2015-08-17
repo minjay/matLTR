@@ -1,5 +1,5 @@
 # matLTR
 Matlab scripts for loading and plotting MIX Model Output.
 
-# That's it!
+Check https://wiki.ucar.edu/display/LTR/Output+format# for details.
 
