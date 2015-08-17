@@ -1,20 +1,29 @@
-folder = '/glade/p/hao/wiltbemj/WHI/WHI-double/';
-file = 'WHIDouble_mix_2008-03-20T00-00-00Z.hdf';
-dir = [folder, file];
-info = hdfinfo(dir);
-GridX = hdfread(dir, 'Grid X');
-GridY = hdfread(dir, 'Grid Y');
-Pot_N = hdfread(dir, 'Potential North [V]');
+folder = '/glade/p/hao/wiltbemj/WHI/WHI-quad/';
+all_files = dir([folder, 'WHIQuad_mix*']);
+all_names = {all_files.name};
 
-GridZ = sqrt(1-GridX.^2-GridY.^2);
-[phi, theta, ~] = cart2sph(GridX, GridY, GridZ);
-phi(phi<0) = phi(phi<0)+2*pi;
-theta = pi/2-theta;
+n = length(all_names);
+all_Pot_N = cell(n, 1);
 
-phi = double(phi(1:end-1, :));
-theta = double(theta(1:end-1, :));
-theta(:, 1) = 0;
-phi(:, 1) = phi(:, 2);
-Pot_N =double(Pot_N(1:end-1, :));
 
-[theta, phi] = meshgrid(theta(1, :), phi(:, 1));
+for i = 1:n
+    name = all_names{i};
+    Pot_N = hdfread(name, 'Potential North [V]');
+    
+    if i==1
+        GridX = hdfread(name, 'Grid X');
+        GridY = hdfread(name, 'Grid Y');
+        GridZ = sqrt(1-GridX.^2-GridY.^2);
+        [phi, theta, ~] = cart2sph(GridX, GridY, GridZ);
+        phi(phi<0) = phi(phi<0)+2*pi;
+        theta = pi/2-theta;
+
+        phi = double(phi(1:end-1, :));
+        theta = double(theta(1:end-1, :));
+        theta(:, 1) = 0;
+        phi(:, 1) = phi(:, 2);
+        [theta, phi] = meshgrid(theta(1, :), phi(:, 1));
+    end
+    
+    all_Pot_N{i} = double(Pot_N(1:end-1, :));
+end
