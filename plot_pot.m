@@ -19,6 +19,5 @@ worldmap(latlim, lonlim);
 pcolorm(theta_interp_mat, phi_interp_mat, Pot_interp);
 h = colorbar;
 ylabel(h, 'Potential Field [V]');
-setm(gca, 'MeridianLabel', 'off')
 
 end
