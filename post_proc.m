@@ -1,5 +1,5 @@
-folder = '/glade/p/hao/wiltbemj/WHI/WHI-quad/';
-all_files = dir([folder, 'WHIQuad_mix*']);
+folder = '/glade/p/hao/wiltbemj/WHI/WHI-double/';
+all_files = dir([folder, 'WHIDouble_mix*']);
 all_names = {all_files.name};
 
 n = length(all_names);
@@ -28,4 +28,4 @@ for i = 1:n
     all_Pot_N{i} = double(Pot_N(1:end-1, :));
 end
 
-save('WHI_quad.mat', 'theta', 'phi', 'all_Pot_N', '-v7.3')
+save('WHI_double.mat', 'theta', 'phi', 'all_Pot_N', '-v7.3')
