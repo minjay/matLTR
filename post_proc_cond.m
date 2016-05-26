@@ -8,7 +8,7 @@ all_Pot_N = cell(n, 1);
 
 for i = 1:n
     name = [folder, all_names{i}];
-    Pot_N = hdfread(name, 'Potential North [V]');
+    Pot_N = hdfread(name, 'Pedersen conductance North [S]');
     
     if i==1
         GridX = hdfread(name, 'Grid X');
