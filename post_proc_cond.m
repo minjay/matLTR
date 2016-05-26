@@ -1,9 +1,9 @@
-folder = '/glade/p/hao/wiltbemj/WHI/WHI-double/';
-all_files = dir([folder, 'WHIDouble_mix*']);
+folder = '/glade/p/hao/wiltbemj/WHI/WHI-quad/';
+all_files = dir([folder, 'WHIQuad_mix*']);
 all_names = {all_files.name};
 
 n = length(all_names);
-all_Pot_N = cell(n, 1);
+all_Cond_N = cell(n, 1);
 
 
 for i = 1:n
@@ -25,7 +25,7 @@ for i = 1:n
         [theta, phi] = meshgrid(theta(1, :), phi(:, 1));
     end
     
-    all_Pot_N{i} = double(Pot_N(1:end-1, :));
+    all_Cond_N{i} = double(Pot_N(1:end-1, :));
 end
 
-save('WHI_double.mat', 'theta', 'phi', 'all_Pot_N', '-v7.3')
+save('WHI_quad_cond.mat', 'theta', 'phi', 'all_Cond_N', '-v7.3')
